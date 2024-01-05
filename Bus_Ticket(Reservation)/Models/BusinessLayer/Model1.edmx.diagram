@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b5348bd9fd69497393f148e02b3145a4" Name="Diagram1">
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.admin" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.bus" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.country" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.Customer" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.history" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.place" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.route" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.schedule" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.seatAvailability" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.state" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusTicketReservationSystemModel.ticket" Width="1.5" PointX="5" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="BusTicketReservationSystemModel.FK_schedule_bus" ManuallyRouted="false" />
-        <AssociationConnector Association="BusTicketReservationSystemModel.FK_state_country" ManuallyRouted="false" />
-        <AssociationConnector Association="BusTicketReservationSystemModel.FK_ticket_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="BusTicketReservationSystemModel.FK_schedule_route" ManuallyRouted="false" />
-        <AssociationConnector Association="BusTicketReservationSystemModel.FK_seatAvailability_schedule" ManuallyRouted="false" />
+      <Diagram DiagramId="cba16ac7c3a94a7e94e896e7f5bb6d2e" Name="Diagram1">
+        <EntityTypeShape EntityType="BusDBModel.admin" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.bus" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.country" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.Customer" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.history" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.place" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.route" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.schedule" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.seatAvailability" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.state" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.ticket" Width="1.5" PointX="5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusDBModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="BusDBModel.FK_schedule_bus" ManuallyRouted="false" />
+        <AssociationConnector Association="BusDBModel.FK_state_country" ManuallyRouted="false" />
+        <AssociationConnector Association="BusDBModel.FK_ticket_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="BusDBModel.FK_schedule_route" ManuallyRouted="false" />
+        <AssociationConnector Association="BusDBModel.FK_seatAvailability_schedule" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
