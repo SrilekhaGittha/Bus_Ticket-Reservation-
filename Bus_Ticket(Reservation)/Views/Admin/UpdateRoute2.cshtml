@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "UpdateRoute2";
+}
+<head>
+    <script src="~/Project_Scripts/PreventBack.js"></script>
+</head>
+@using (Html.BeginForm())
+{
+    <body style=" background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">Update Route</h3>
+                @if (ViewBag.msg != null)
+                {
+                    <div class="alert alert-success mb-4">
+                        @ViewBag.msg
+                    </div>
+                    <div>
+                        <a href="/Admin/Home" class="btn btn-primary">Back</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </body>
+}
+
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

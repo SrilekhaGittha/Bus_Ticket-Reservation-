@@ -1,0 +1,85 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.bus
+
+@{
+    ViewBag.Title = "UpdateBus1";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <script type="text/javascript" language="javascript">
+            function DisableBackButton() {
+                window.history.forward()
+            }
+            DisableBackButton();
+            window.onload = DisableBackButton;
+            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+            window.onunload = function () { void (0) }
+        </script>
+   
+</head>
+<body style="background-image: url('../../images/bg.jpg');">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+            <h3 class="mb-4">Update Bus</h3>
+            @using (Html.BeginForm("UpdateBus2", "Admin"))
+            {
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Bus ID</td>
+                        <td>@Html.TextBoxFor(a => a.busid, new { @Value = Model.busid, @class = "form-control", @readonly = "readonly" })</td>
+                    </tr>
+                    <tr>
+                        <td>Bus Name</td>
+                        <td>@Html.TextBoxFor(a => a.busname, new { @Value = Model.busname, @class = "form-control", required = "required" })</td>
+                    </tr>
+                    <tr>
+                        <td>Bus Type</td>
+                        <td>
+                            @Html.DropDownList("BusType", new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text = "A/C Sleeper", Value = "A/C Sleeper" },
+                                    new SelectListItem { Text = "A/C Semi-Sleeper", Value = "A/C Semi-Sleeper" },
+                                    new SelectListItem { Text = "Non A/C Seater", Value = "Non A/C Seater" },
+                                }, "Select", new { @class = "form-control", id= "BusType",required = "required" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Number of Seats</td>
+                        <td>@Html.TextBoxFor(a => a.no_ofseats, new { @Value = Model.no_ofseats, @class = "form-control", Type = "number", required = "required" })</td>
+                        <td>
+                            @Html.ValidationMessageFor(a => a.no_ofseats, "", new { @class = "text-danger"  ,id = "no_ofseats" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-primary w-100" id="update">Update Bus</button>
+                        </td>
+                    </tr>
+                </table>
+            }
+           
+        </div>
+    </div>
+
+    <script>
+        const bustypeSelect = document.querySelector("#BusType");
+        const noOfSeatsInput = document.querySelector("#no_ofseats");
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+            const selectedBusType = bustypeSelect.value;
+            const enteredSeats = parseInt(noOfSeatsInput.value);
+
+            if (selectedBusType === "A/C Sleeper" && enteredSeats > 25) {
+                event.preventDefault();
+                alert("Maximum number of seats for A/C Sleeper is 25.");
+            } else if (selectedBusType === "A/C Semi-Sleeper" && enteredSeats > 35) {
+                event.preventDefault();
+                alert("Maximum number of seats for A/C Semi-Sleeper is 35.");
+            } else if (selectedBusType === "Non A/C Seater" && enteredSeats > 45) {
+                event.preventDefault();
+                alert("Maximum number of seats for Non A/C Seater is 45.");
+            }
+        });
+    </script>
+</body>

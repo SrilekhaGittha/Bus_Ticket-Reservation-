@@ -1,0 +1,126 @@
+﻿@model Bus_Ticket_Reservation_.Models.DataLayer.sample
+@{
+    var cookieValue = Request.Cookies["cid1"]?.Value;
+    ViewBag.Title = "Book_Ticket";
+}
+<link href="~/Project_Styles/TicketBooking.css" rel="stylesheet" />
+<script src="~/Project_Scripts/bookticket.js"></script>
+
+
+<body style=" background-image: url('../../images/bg.jpg');">
+    @using (Html.BeginForm("Book_Ticket1", "Customer", FormMethod.Post, new { onsubmit = "check(event)" }))
+     
+    {
+    <header style="margin-top:100px">
+        <h1>Tech Bus Ticket Booking</h1>
+    </header>
+    <div class="container">
+        <div class="bus-ticket-form">
+            <form action="/book-ticket" method="post">
+                <div class="form-group">
+                    <label for="Cid">CustomerId:</label>
+                    <input type="text" id="Cid" value="@cookieValue" name="Cid" required disabled>
+                </div>
+                <div class="form-group">
+                    <label for="from">FromLocation:</label>
+                    <input type="text" id="from" name="fromLocation" />
+                    <ul style="list-style: none;" class="list"></ul>
+                    @Html.ValidationMessageFor(a => a.FromLocation, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="to">ToLocation:</label>
+                    <input type="text" id="to" name="toLocation" />
+                    <ul style="list-style: none;" class="list"></ul>
+                    @Html.ValidationMessageFor(a => a.ToLocation, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="dateInput">DateOfJourney:</label>
+                    @Html.TextBoxFor(a => a.DateOfJourney, null, new { Type = "date", @id = "dateInput", required = "required" })
+                    @Html.ValidationMessageFor(a => a.DateOfJourney, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    <label for="passengers">No.ofSeats:</label>
+                    <select id="passengers" name="Tickets" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <!-- Add more options if needed -->
+                    </select>
+                </div>
+                <input type="submit" value="Book Ticket" class="btn btn-primary">
+                @if (ViewBag.msg != null)
+                {
+                    <p style="color:red">@ViewBag.msg</p>
+                }
+            </form>
+        </div>
+    </div>
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let names = [];
+            fetch('/Customer/FetchPlaces')  // Replace with the actual URL
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        names = data.map(name => name.toLowerCase()).sort();
+                        let fromInput = document.getElementById("from");
+                        let toInput = document.getElementById("to");
+
+                        fromInput.addEventListener("keyup", function (e) {
+                            handleAutocomplete(e, fromInput);
+                        });
+
+                        toInput.addEventListener("keyup", function (e) {
+                            handleAutocomplete(e, toInput);
+                        });
+
+                        function handleAutocomplete(event, input) {
+                            let inputText = input.value.toLowerCase();
+                            let list = input.parentElement.querySelector(".list");
+                            list.innerHTML = "";
+                            for (let name of names) {
+                                if (name.startsWith(inputText) && inputText !== "") {
+                                    let listItem = document.createElement("li");
+                                    listItem.classList.add("list-items");
+                                    listItem.style.cursor = "pointer";
+
+                                    listItem.addEventListener("click", function () {
+                                        displayNames(name, input.id);
+                                    });
+
+                                    let matchedPart = name.substring(0, inputText.length);
+                                    let remainingPart = name.substring(inputText.length);
+
+                                    listItem.innerHTML = `<b>${matchedPart}</b>${remainingPart}`;
+                                    list.appendChild(listItem);
+                                }
+                            }
+                        }
+
+                        function displayNames(value, inputId) {
+                            let input = document.getElementById(inputId);
+                            input.value = value;
+                            removeElements(input.parentElement.querySelector(".list"));
+                        }
+
+                        function removeElements(list) {
+                            while (list.firstChild) {
+                                list.removeChild(list.firstChild);
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching names:', error);
+                });
+        });
+    </script>
+</body>
+
+
+

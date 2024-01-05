@@ -1,0 +1,16 @@
+﻿@{
+    if (Session["type"]==null)
+    {
+        Layout = "~/Views/Shared/_LoginMaster.cshtml";
+    }
+    else if (Session["type"].Equals("Customer"))
+    {
+        Layout = "~/Views/Shared/_CustomerMaster.cshtml";
+    }
+    else if (Session["type"].Equals("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminHome.cshtml";
+    }
+   
+}
+

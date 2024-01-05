@@ -1,0 +1,27 @@
+﻿body {
+    background-image: url('../images/bg.jpg');
+}
+
+.card {
+    max-width: 400px;
+    margin: 100px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.alert {
+    margin-top: 20px;
+}
+

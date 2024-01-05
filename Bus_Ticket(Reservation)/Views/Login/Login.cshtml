@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Login Page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="~/Project_Styles/login.css" rel="stylesheet" />
+
+    <script src="~/Project_Scripts/PreventBack.js"></script>
+</head>
+@using (Html.BeginForm())
+{
+<body>
+    <section>
+        <div class="Box">
+            <div class="imgBx">
+                <img src="~/Images/image (1).jpg" />
+            </div>
+            <div class="contentBx">
+                <div class="formBx">
+                    <h2>Login</h2>
+                    <form>
+                        <div class="inputBx">
+                            <span>Email ID&nbsp;&nbsp;</span>
+                            <input type="text" name="email" required />
+                        </div>
+                        <div class="inputBx">
+                            <span>Password</span>
+                            <input type="password" name="password" required />
+                        </div>
+                        <div class="inputBx">
+                            <input type="submit" value="Login" name="" />
+                        </div>
+                        <div class="inputBx">
+                            <p>Don't have an account?<a href="/Customer/Register">SignUp</a></p>
+                        </div>
+                    </form>
+                    @if (ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger mb-4">
+                            @ViewBag.msg
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+}
+</html>

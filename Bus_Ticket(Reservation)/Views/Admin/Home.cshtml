@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<head>
+    <title>Bus Management Home Page</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/Project_Styles/AdminHome.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h3>Welcome Admin!</h3>
+    </header>
+    <div class="container">
+        <div class="jumbotron">
+           <h5> Manage your buses, routes, and schedules efficiently with our easy-to-use platform.</h5>
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-4">
+                <a href="/Admin/Bus">
+                    <!-- Increase the column size to col-md-6 -->
+                    <div class="feature-card">
+                        <img src="~/Images/upscaled (2).jpg" />
+                        <h4>Manage Buses</h4>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/Admin/Route">
+
+                    <!-- Increase the column size to col-md-6 -->
+                    <div class="feature-card">
+                        <img src="~/Images/upscaled.jpg" />
+                        <h4>Manage Routes</h4>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/Admin/Schedule">
+
+                    <!-- Increase the column size to col-md-6 -->
+                    <div class="feature-card">
+                        <img src="~/Images/upscaled (1).jpg" />
+                        <h4>Manage Schedules</h4>
+
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!-- Add the Bootstrap JS and jQuery scripts at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

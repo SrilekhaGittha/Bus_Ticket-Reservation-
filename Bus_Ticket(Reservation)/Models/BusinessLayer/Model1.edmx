@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BusTicketReservationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="busid" />
+          </Key>
+          <Property Name="busid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="busname" Type="nvarchar" MaxLength="50" />
+          <Property Name="bustype" Type="nvarchar" MaxLength="50" />
+          <Property Name="no.ofseats" Type="int" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryid" />
+          </Key>
+          <Property Name="countryid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryname" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactno" Type="nchar" MaxLength="10" />
+          <Property Name="dob" Type="date" />
+          <Property Name="customertype" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="history">
+          <Key>
+            <PropertyRef Name="ticketid" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="cid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ticketid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fromaddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="toaddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="places">
+          <Key>
+            <PropertyRef Name="places" />
+          </Key>
+          <Property Name="places" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="routeid" />
+          </Key>
+          <Property Name="routeid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pickup" Type="nvarchar" MaxLength="50" />
+          <Property Name="dropout" Type="nvarchar" MaxLength="50" />
+          <Property Name="cost" Type="int" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RouteId" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="seatAvailability">
+          <Key>
+            <PropertyRef Name="scheduleid" />
+            <PropertyRef Name="dateofJourney" />
+          </Key>
+          <Property Name="scheduleid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateofJourney" Type="date" Nullable="false" />
+          <Property Name="availableSeats" Type="int" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="statename" Type="nvarchar" MaxLength="50" />
+          <Property Name="countryid" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="ticketid" />
+          </Key>
+          <Property Name="customerid" Type="nvarchar" MaxLength="50" />
+          <Property Name="ticketid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="scheduleid" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateofjourney" Type="date" />
+          <Property Name="no_ofseats" Type="int" />
+        </EntityType>
+        <Association Name="FK_schedule_bus">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="busid" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedule_route">
+          <End Role="route" Type="Self.route" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="routeid" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seatAvailability_schedule">
+          <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+          <End Role="seatAvailability" Type="Self.seatAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedule">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="seatAvailability">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_state_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="countryid" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BusTicketReservationSystemModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bus" EntityType="Self.bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="places" EntityType="Self.places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="route" EntityType="Self.route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seatAvailability" EntityType="Self.seatAvailability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ticket" EntityType="Self.ticket" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_schedule_bus" Association="Self.FK_schedule_bus">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedule_route" Association="Self.FK_schedule_route">
+            <End Role="route" EntitySet="route" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seatAvailability_schedule" Association="Self.FK_seatAvailability_schedule">
+            <End Role="schedule" EntitySet="schedule" />
+            <End Role="seatAvailability" EntitySet="seatAvailability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="state" EntitySet="state" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_Customer" Association="Self.FK_ticket_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ticket" EntitySet="ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BusTicketReservationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="busid" />
+          </Key>
+          <Property Name="busid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="busname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bustype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="no_ofseats" Type="Int32" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_bus" FromRole="bus" ToRole="schedule" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryid" />
+          </Key>
+          <Property Name="countryid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countryname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="states" Relationship="Self.FK_state_country" FromRole="country" ToRole="state" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactno" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="customertype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tickets" Relationship="Self.FK_ticket_Customer" FromRole="Customer" ToRole="ticket" />
+        </EntityType>
+        <EntityType Name="history">
+          <Key>
+            <PropertyRef Name="ticketid" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="cid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ticketid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fromaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="toaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="place">
+          <Key>
+            <PropertyRef Name="places" />
+          </Key>
+          <Property Name="places" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="routeid" />
+          </Key>
+          <Property Name="routeid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pickup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dropout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cost" Type="Int32" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_route" FromRole="route" ToRole="schedule" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RouteId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bus" Relationship="Self.FK_schedule_bus" FromRole="schedule" ToRole="bus" />
+          <NavigationProperty Name="route" Relationship="Self.FK_schedule_route" FromRole="schedule" ToRole="route" />
+          <NavigationProperty Name="seatAvailabilities" Relationship="Self.FK_seatAvailability_schedule" FromRole="schedule" ToRole="seatAvailability" />
+        </EntityType>
+        <EntityType Name="seatAvailability">
+          <Key>
+            <PropertyRef Name="scheduleid" />
+            <PropertyRef Name="dateofJourney" />
+          </Key>
+          <Property Name="scheduleid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateofJourney" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="availableSeats" Type="Int32" />
+          <NavigationProperty Name="schedule" Relationship="Self.FK_seatAvailability_schedule" FromRole="seatAvailability" ToRole="schedule" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="statename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="countryid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="country" Relationship="Self.FK_state_country" FromRole="state" ToRole="country" />
+        </EntityType>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="ticketid" />
+          </Key>
+          <Property Name="customerid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ticketid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="scheduleid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateofjourney" Type="DateTime" Precision="0" />
+          <Property Name="no_ofseats" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_ticket_Customer" FromRole="ticket" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_schedule_bus">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="busid" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_state_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="countryid" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedule_route">
+          <End Role="route" Type="Self.route" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="routeid" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seatAvailability_schedule">
+          <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+          <End Role="seatAvailability" Type="Self.seatAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedule">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="seatAvailability">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BusTicketReservationSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="buses" EntityType="Self.bus" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="histories" EntityType="Self.history" />
+          <EntitySet Name="places" EntityType="Self.place" />
+          <EntitySet Name="routes" EntityType="Self.route" />
+          <EntitySet Name="schedules" EntityType="Self.schedule" />
+          <EntitySet Name="seatAvailabilities" EntityType="Self.seatAvailability" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="tickets" EntityType="Self.ticket" />
+          <AssociationSet Name="FK_schedule_bus" Association="Self.FK_schedule_bus">
+            <End Role="bus" EntitySet="buses" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="state" EntitySet="states" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_Customer" Association="Self.FK_ticket_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ticket" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedule_route" Association="Self.FK_schedule_route">
+            <End Role="route" EntitySet="routes" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seatAvailability_schedule" Association="Self.FK_seatAvailability_schedule">
+            <End Role="schedule" EntitySet="schedules" />
+            <End Role="seatAvailability" EntitySet="seatAvailabilities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BusTicketReservationSystemModelStoreContainer" CdmEntityContainer="BusTicketReservationSystemEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buses">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.bus">
+              <MappingFragment StoreEntitySet="bus">
+                <ScalarProperty Name="busid" ColumnName="busid" />
+                <ScalarProperty Name="busname" ColumnName="busname" />
+                <ScalarProperty Name="bustype" ColumnName="bustype" />
+                <ScalarProperty Name="no_ofseats" ColumnName="no.ofseats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="countryname" ColumnName="countryname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="customertype" ColumnName="customertype" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="histories">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.history">
+              <MappingFragment StoreEntitySet="history">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="ticketid" ColumnName="ticketid" />
+                <ScalarProperty Name="fromaddress" ColumnName="fromaddress" />
+                <ScalarProperty Name="toaddress" ColumnName="toaddress" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="places">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.place">
+              <MappingFragment StoreEntitySet="places">
+                <ScalarProperty Name="places" ColumnName="places" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="routes">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.route">
+              <MappingFragment StoreEntitySet="route">
+                <ScalarProperty Name="routeid" ColumnName="routeid" />
+                <ScalarProperty Name="pickup" ColumnName="pickup" />
+                <ScalarProperty Name="dropout" ColumnName="dropout" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.schedule">
+              <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seatAvailabilities">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.seatAvailability">
+              <MappingFragment StoreEntitySet="seatAvailability">
+                <ScalarProperty Name="scheduleid" ColumnName="scheduleid" />
+                <ScalarProperty Name="dateofJourney" ColumnName="dateofJourney" />
+                <ScalarProperty Name="availableSeats" ColumnName="availableSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tickets">
+            <EntityTypeMapping TypeName="BusTicketReservationSystemModel.ticket">
+              <MappingFragment StoreEntitySet="ticket">
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="ticketid" ColumnName="ticketid" />
+                <ScalarProperty Name="scheduleid" ColumnName="scheduleid" />
+                <ScalarProperty Name="dateofjourney" ColumnName="dateofjourney" />
+                <ScalarProperty Name="no_ofseats" ColumnName="no_ofseats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

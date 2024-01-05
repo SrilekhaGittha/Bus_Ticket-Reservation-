@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Bus_Ticket_Reservation_.Models.BusinessLayer.history>
+@{
+    ViewBag.Title = "History";
+}
+
+@{
+    var pageSize = 10; // Number of rows per page
+    var totalRecords = Model.Count();
+    var totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+    int pageIndex = !string.IsNullOrEmpty(Request.QueryString["pageIndex"]) ? Convert.ToInt32(Request.QueryString["pageIndex"]) : 1;
+    pageIndex = Math.Max(1, Math.Min(pageIndex, totalPages));
+
+    var recordsToDisplay = Model.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+}
+
+<body style="background-image: url('../../images/bg.jpg');background-size:cover">
+    <h2 class="text-center my-4">Booking History</h2>
+    @using (Html.BeginForm())
+    {
+        <!-- Rest of your code -->
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Ticket ID</th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in recordsToDisplay)
+                        {
+                            <tr>
+                                <td>@item.cid</td>
+                                <td>@item.ticketid</td>
+                                <td>@item.fromaddress</td>
+                                <td>@item.toaddress</td>
+                                <td>@item.datetime</td>
+                                <td>@item.status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <!-- Pagination -->
+                <div class="text-center">
+                    <ul class="pagination">
+                       
+                        @for (int i = 1; i <= totalPages; i++)
+                        {
+                            <li class="page-item @(pageIndex == i ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("History", new { pageIndex = i })">@i</a>
+                            </li>
+                        }
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="a">
+            <a class="btn btn-primary" href="/Customer/Home">Back</a>
+        </div>
+    }
+</body>

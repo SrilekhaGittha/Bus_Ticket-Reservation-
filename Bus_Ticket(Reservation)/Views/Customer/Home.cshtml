@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<head>
+    <title>Bus Management Home Page</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/Project_Styles/CustomerHome.css" rel="stylesheet" />
+   
+</head>
+
+<body>
+    <div class="container">
+    <header>
+        <marquee behavior="scroll" direction="left" scrollamount="10">
+            <h3>Welcome to TechBus!</h3>
+        </marquee>
+    </header>
+    <div class="jumbotron">
+        <p>Revolutionize your travel experience with our innovative bus reservation platform. Effortlessly book, modify, and track your journeys, making every trip a memorable adventure.</p>
+    </div>
+    <div class="row d-flex">
+        <div class="col-md-3">
+            <div class="feature-card">
+                <img src="~/Images/image (7).jpg" />
+                <a href="/Customer/Book_Ticket"><h4>Book Ticket</h4></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="feature-card">
+                <img src="~/Images/image (6).jpg" />
+                <a href="/Customer/CancelTicket"><h4>Cancel Ticket</h4></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="feature-card">
+                <img src="~/Images/image (9).jpg" />
+                <a href="/Customer/Getdetails"><h4>Update Profile</h4></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="feature-card">
+                <img src="~/Images/image (1).jpg" />
+                <a href="/Customer/History"><h4>View History</h4></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Add the Bootstrap JS and jQuery scripts at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+
+
+

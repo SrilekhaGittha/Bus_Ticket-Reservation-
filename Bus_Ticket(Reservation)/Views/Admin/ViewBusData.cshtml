@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Bus_Ticket_Reservation_.Models.BusinessLayer.bus>
+
+@{
+    ViewBag.Title = "ViewBusData";
+}
+<style>
+    .btn .btn-primary a{
+        color:white;
+
+    }
+    .btn .btn-primary a:hover {
+        text-decoration: none;
+        
+    }
+</style>
+@using (Html.BeginForm())
+{
+    <body style=" background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">View Bus Data</h3>
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Bus ID</th>
+                                <th>Bus Name</th>
+                                <th>Bus Type</th>
+                                <th>No of Seats</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bus in Model)
+                            {
+                                <tr>
+                                    <td>@bus.busid</td>
+                                    <td>@bus.busname</td>
+                                    <td>@bus.bustype</td>
+                                    <td>@bus.no_ofseats</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="a">
+                        <a class="btn btn-primary" href="/Admin/Bus">Back</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </body>
+}
+
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

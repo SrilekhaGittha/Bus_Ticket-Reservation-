@@ -1,0 +1,53 @@
+﻿
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Cancellation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="~/Project_Styles/cancelticket.css" rel="stylesheet" />
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        if (ViewBag.result == null)
+        {
+            <div class="container">
+                <h1 style="margin-top:100px">Ticket Cancellation</h1>
+                <form id="cancelTicketForm">
+                    <label for="ticketId">Enter Ticket Number:</label>
+                    <input type="text" id="ticketId" name="ticketId" required>
+                    <button type="submit">Cancel Ticket</button>
+                </form>
+                <div id="result"></div>
+            </div>
+        }
+        else
+        {
+            if (ViewBag.result == -1)
+            {
+                <div class="card">
+                    <h2>Ticket Cannot cancelled</h2>
+                    <p>Your ticket has not been canceled.please enter Valid ticket no..!</p>
+                </div>
+                <div class="a">
+                    <a class="btn btn-primary" href="/Customer/CancelTicket">Back</a>
+                </div>
+            }
+            else
+            {
+                <div class="card">
+                    <h2>Ticket Canceled Successfully</h2>
+                    <p>Your ticket has been canceled. Thank you for using our service!</p>
+                    <p>The amount <b>@ViewBag.result</b> will be send to your bankaccount</p>
+                </div>
+                <div class="a">
+                    <a class="btn btn-primary" href="/Customer/Home">Back</a>
+                </div>
+            }
+        }
+
+    }
+</body>
+

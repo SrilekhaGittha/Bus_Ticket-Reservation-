@@ -1,0 +1,127 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.Customer
+@{
+    ViewBag.Title = "Update Details";
+}
+<h2>Getdetails</h2>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="~/Project_Styles/register.css" rel="stylesheet" />
+    <script src="~/Project_Scripts/GetDetails.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    @using (Html.BeginForm())
+    {
+
+        <div class="container">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="Name">Cid:</label>
+                    <input type="text" name="Cid" value="@Model.CID" id="Name" readonly />
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Name">Name:</label>
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control"})
+                @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Gender">Gender:</label>
+                @Html.DropDownList("Gender", new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Male", Value = "Male" },
+                    new SelectListItem { Text = "Female", Value = "Female" },
+                    new SelectListItem { Text = "Trans", Value = "Trans" },
+                }, "Select", new { @class = "form-control", required = "required" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="dob">Date of Birth:</label>
+                @Html.TextBoxFor(a => a.dob, new { @class = "form-control", type = "date", required = "required" })
+                @Html.ValidationMessageFor(a => a.dob, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Email">Email:</label>
+                @Html.TextBoxFor(a => a.Email, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="contactno">Contact No:</label>
+                @Html.TextBoxFor(a => a.contactno, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(a => a.contactno, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Country">Country:</label>
+                <select id="countryId" name="Country" class="form-control" required>
+                    <option value="">Select</option>
+                </select>
+                @Html.ValidationMessageFor(a => a.Country, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.Country)
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="State">State:</label>
+                <select id="stateId" name="State" class="form-control" required>
+                    <option value="">Select</option>
+                </select>
+                @Html.ValidationMessageFor(a => a.State, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.State)
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="City">City:</label>
+                @Html.TextBoxFor(a => a.City, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(a => a.City, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Pincode">Pincode:</label>
+                @Html.TextBoxFor(a => a.Pincode, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(a => a.Pincode, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Address">Address:</label>
+                @Html.TextBoxFor(a => a.Address, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(a => a.Address, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="CustomerType">Customer Type:</label>
+                @Html.DropDownList("CustomerType", new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Government Officer", Value = "Government Officer" },
+                    new SelectListItem { Text = "Government Employee", Value = "Government Employee" },
+                    new SelectListItem { Text = "Private Employee", Value = "Private Employee" },
+                    new SelectListItem { Text = "Student", Value = "Student" },
+                    new SelectListItem { Text = "Others", Value = "Others" },
+                }, "Select", new { @class = "form-control", required = "required" })
+            </div>
+
+
+
+            <button id="btn" class="btn btn-primary" type="submit">Update</button>
+            @if (@TempData["msg"] != null)
+            {
+                <p style="color:green">@TempData["msg"]</p>
+                <div class="a">
+                    <a class="btn btn-primary" href="/Customer/Home">Back</a>
+                </div>
+            }
+
+        </div>
+
+
+    }
+
+    <!-- Add Bootstrap JS and jQuery (optional) -->
+    <!-- You may need jQuery for some Bootstrap features -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

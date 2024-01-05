@@ -1,0 +1,49 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.route
+
+@{
+    ViewBag.Title = "UpdateRoute1";
+}
+<head>
+    <script src="~/Project_Scripts/UpdateRoute1.js"></script>
+</head>
+@using (Html.BeginForm("UpdateRoute2", "Admin", FormMethod.Post, new { onsubmit = "check(event)" }))
+{
+    <body style="background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">Update Route</h3>
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Route ID</td>
+                            <td>@Html.TextBoxFor(a => a.routeid, new { @Value = Model.routeid, @class = "form-control",@readonly="readonly" })</td>
+                        </tr>
+                        <tr>
+                            <td>Pickup</td>
+                            <td>@Html.TextBoxFor(a => a.pickup, new { @Value = Model.pickup,@id= "pickup", @class = "form-control",required="required" })</td>
+                        </tr>
+                        <tr>
+                            <td>Dropout</td>
+                            <td>@Html.TextBoxFor(a => a.dropout, new { @Value = Model.dropout, @id = "dropout" ,@class = "form-control", required = "required" })</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>@Html.TextBoxFor(a => a.cost, new { @Value = Model.cost, @class = "form-control",type="number", required = "required" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary w-100">Update Route</button>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </div>
+    </body>
+}
+
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+

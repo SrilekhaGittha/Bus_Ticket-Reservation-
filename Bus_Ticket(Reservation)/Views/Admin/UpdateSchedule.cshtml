@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Bus_Ticket_Reservation_.Models.BusinessLayer.schedule>
+
+@{
+    ViewBag.Title = "UpdateSchedule";
+}
+<head>
+    <script src="~/Project_Scripts/ScheduleValidation.js"></script>
+</head>
+@using (Html.BeginForm("UpdateSchedule1", "Admin"))
+{
+    <body style="background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">Update Schedule</h3>
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Schedule ID</th>
+                                <th>Route ID</th>
+                                <th>Bus ID</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var schedule in Model)
+                            {
+                                <tr>
+                                    <td><input type="radio" name="scheduleid" value="@schedule.SID" /></td>
+                                    <td>@schedule.SID</td>
+                                    <td>@schedule.RouteId</td>
+                                    <td>@schedule.BusId</td>
+                                    <td>@schedule.Time</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-primary" id="ScheduleButton">Update Schedule</button>
+                }
+            </div>
+        </div>
+    </body>
+}
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+

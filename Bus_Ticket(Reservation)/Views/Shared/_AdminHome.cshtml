@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for the navbar */
+        body {
+            padding-top: 70px; /* Add padding to the top of the body to prevent content from being hidden by the fixed navbar */
+        }
+
+        .navbar {
+            background-color: #581845; /* Dark background color */
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000; /* White text color */
+        }
+
+            .navbar-brand:hover, .navbar-nav .nav-link:hover {
+                color: white; /* Lighter text color on hover */
+            }
+
+        .nav-item {
+            padding: 0px 5px 0px 5px;
+        }
+
+        ul {
+            margin-left: 40px;
+        }
+
+        .navbar-brand img {
+            width: 70px; /* Set the width of the logo image */
+            margin-right: 10px; /* Add some space between the image and the text */
+            display: inline-block; /* Make sure the image and text are on the same line */
+            vertical-align: middle; /* Align the image vertically in the middle of the navbar */
+            border-radius: 50%;
+        }
+
+        .logout:hover {
+            color: black;
+            background-color: green;
+        }
+    </style>
+    <script>
+        // Disable right-click on the entire page
+        /*document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });*/
+    </script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="https://t4.ftcdn.net/jpg/02/69/47/51/360_F_269475198_k41qahrZ1j4RK1sarncMiFHpcmE2qllQ.jpg" />
+            TechBus
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <!-- Use "mr-auto" to align elements to the left -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Admin/Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Bus">Buses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Route">Routes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Schedule">Schedules</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <!-- Use this new "navbar-nav" list for the Logout link -->
+                <li class="nav-item logout">
+                    <a class="nav-link active" href="/Login/Logout">LogOut</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

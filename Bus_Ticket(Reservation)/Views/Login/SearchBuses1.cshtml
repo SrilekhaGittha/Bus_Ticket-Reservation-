@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Bus_Ticket_Reservation_.Models.DataLayer.bus_details>
+@{
+    ViewBag.Title = "SearchBuses1";
+}
+
+<h2>SearchBuses1</h2>
+<head>
+    <link href="~/Project_Styles/bookticket1.css" rel="stylesheet" />
+    <script src="~/Project_Scripts/BookTicket1.js"></script>
+</head>
+<body style="background-color: #e1eef0">
+    <header>
+        <h1>Available Buses</h1>
+    </header>
+
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="bus-card" name="busid" onclick="selectBus('@item.Busid',this)">
+                        <p class="bus-details">Bus Name: @item.Busname</p>
+                        <p class="bus-details">Bus Type: @item.Bustype</p>
+                        <p class="bus-details">Seats Available: @item.AvailableSeats</p>
+                        <p class="bus-details">Time: @item.Time</p>
+                    </div>
+                }
+                <div>
+                    <a href="/Login/Login" class="btn btn-primary">Book</a>
+                </div>
+            }
+        }
+
+    </div>
+</body>

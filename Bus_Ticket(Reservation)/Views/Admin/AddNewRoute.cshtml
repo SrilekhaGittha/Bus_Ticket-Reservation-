@@ -1,0 +1,62 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.route
+
+@{
+    ViewBag.Title = "AddNewRoute";
+}
+<script>
+    function check(event) {
+        let x1 = document.getElementById("from");
+        let x2 = document.getElementById("to");
+        if (x1.value == x2.value) {
+            alert("From and To Cannot be Same");
+            event.preventDefault();
+        }
+    }
+</script>
+<body style=" background-image: url('../../images/bg.jpg');">
+
+    @using (Html.BeginForm("AddNewRoute","Admin",FormMethod.Post, new { onsubmit = "check(event)" }))
+    {
+
+        <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="card col-lg-6 col-md-8 col-sm-10" style="border-radius:10px">
+                <div class="card-body" style="border-radius:10px">
+                    <h3 class="mb-4">Add New Route</h3>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>From</td>
+                            <td>@Html.TextBoxFor(a => a.pickup, new { @class = "form-control", @id = "from", required = "required" })</td>
+                        </tr>
+                        <tr>
+                            <td>To</td>
+                            <td>@Html.TextBoxFor(a => a.dropout, new { @class = "form-control", @id = "to" ,required = "required" })</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>@Html.TextBoxFor(a => a.cost, new { @class = "form-control", required = "required" })</td>
+                            
+                                
+                            
+                        </tr>
+                        <tr><td>@Html.ValidationMessageFor(a => a.cost, "", new { @class = "text-danger" })</td></tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary w-100">Add Route</button>
+                            </td>
+                        </tr>
+                    </table>
+                    @if (ViewBag.result != null)
+                    {
+                        <div class="alert alert-success">
+                            @ViewBag.result
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</body>
+
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   

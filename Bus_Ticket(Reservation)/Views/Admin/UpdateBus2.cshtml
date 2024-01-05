@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "UpdateBus2";
+}
+<body style="background-image: url('../../images/bg.jpg');">
+    @using (Html.BeginForm())
+    {
+        if (TempData["msg"] != null)
+        {
+            <div class="container mt-4">
+                <div class="alert alert-success">
+                    @TempData["msg"]
+                </div>
+            </div>
+            <div class="a">
+                <a class="btn btn-primary" href="/Admin/Bus">Back</a>
+            </div>
+        }
+    }
+
+</body>

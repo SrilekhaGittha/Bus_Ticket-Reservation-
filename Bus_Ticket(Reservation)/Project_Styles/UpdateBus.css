@@ -1,0 +1,24 @@
+﻿body {
+    background-image: url('../images/bg.jpg');
+}
+
+.card {
+    border-radius: 15px;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}

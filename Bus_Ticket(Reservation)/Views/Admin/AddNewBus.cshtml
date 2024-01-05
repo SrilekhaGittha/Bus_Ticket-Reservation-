@@ -1,0 +1,86 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.bus
+@{
+    ViewBag.Title = "AddNewBus";
+}
+<link href="~/Project_Styles/addbus.css" rel="stylesheet" />
+
+<body style="background-color: #e9ecef ">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="mb-4">Add New Bus</h3>
+            @using (Html.BeginForm())
+            {
+
+                <div class="form-group">
+                    <label class="form-label">Bus Name</label>
+                    @Html.TextBoxFor(a => a.busname, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(a => a.busname, "", new { @class = "text-danger" })
+                </div><div class="form-group">
+                    <label class="form-label">Bus Type</label>
+                    @Html.DropDownList("BusType", new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "A/C Sleeper", Value = "A/C Sleeper" },
+                        new SelectListItem { Text = "A/C Semi-Sleeper", Value = "A/C Semi-Sleeper" },
+                        new SelectListItem { Text = "Non A/C Seater", Value = "Non A/C Seater" },
+                    }, "Select", new { @class = "form-control", id = "bustype", required = "required" })
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Number of Seats</label>
+                    @Html.TextBoxFor(a => a.no_ofseats, new { @class = "form-control", id = "no_ofseats", min = "1", type = "number", required = "required" })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add Bus</button>
+                </div>
+            }
+            @if (ViewBag.result != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.result
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <script>
+        // Client-side form validation
+        document.querySelector("form").addEventListener("submit", function (event) {
+            const busid = document.querySelector("#busid").value.trim();
+            const busname = document.querySelector("#busname").value.trim();
+            const bustype = document.querySelector("#bustype").value.trim();
+            const no_ofseats = document.querySelector("#no_ofseats").value.trim();
+
+            if (!busid || !busname || !bustype || !no_ofseats) {
+                event.preventDefault();
+                alert("Please fill out all fields.");
+            }
+        });
+
+        const bustypeSelect = document.querySelector("#bustype");
+        const noOfSeatsInput = document.querySelector("#no_ofseats");
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+            const selectedBusType = bustypeSelect.value;
+            const enteredSeats = parseInt(noOfSeatsInput.value);
+
+            if (selectedBusType === "A/C Sleeper" && enteredSeats > 25) {
+                event.preventDefault();
+                alert("Maximum number of seats for A/C Sleeper is 25.");
+            }
+            else if (selectedBusType === "A/C Semi-Sleeper" && enteredSeats > 35) {
+                event.preventDefault();
+                alert("Maximum number of seats for A/C Semi-Sleeper is 35.");
+            }
+            else if (selectedBusType === "Non A/C Seater" && enteredSeats > 45) {
+                event.preventDefault();
+                alert("Maximum number of seats for Non A/C Seater is 45.");
+            }
+        });
+
+    </script>
+
+
+</body>

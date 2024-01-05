@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Bus_Ticket_Reservation_.Models.BusinessLayer.route>
+
+@{
+    ViewBag.Title = "ViewRouteData";
+}
+<style>
+    .btn .btn-primary a {
+        color: white;
+    }
+
+        .btn .btn-primary a:hover {
+            text-decoration: none;
+        }
+</style>
+@using (Html.BeginForm())
+{
+    <body style="background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">Routes Available</h3>
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Route ID</th>
+                                <th>Pickup Location</th>
+                                <th>DropOut Location</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.routeid</td>
+                                    <td>@item.pickup</td>
+                                    <td>@item.dropout</td>
+                                    <td>@item.cost</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="a">
+                        <a class="btn btn-primary" href="/Admin/Bus">Back</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </body>
+}
+
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

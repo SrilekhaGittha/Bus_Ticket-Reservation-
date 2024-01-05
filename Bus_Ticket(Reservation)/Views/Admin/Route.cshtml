@@ -1,0 +1,246 @@
+﻿@{
+    ViewBag.Title = "Bus";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('../../images/bg.jpg');
+            background-size: cover;
+        }
+        /* Custom CSS for centering cards and increasing height */
+        body, html {
+            height: 100%;
+            margin: 0; /* Remove default margin */
+        }
+
+
+
+        .top-image {
+            margin-top: 15%;
+            height: 230px;
+            margin-bottom: 15%;
+        }
+
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Display children elements in a column */
+            height: 100%;
+            margin-top: 55px;
+            margin-bottom: -62px;
+        }
+
+
+
+        .card {
+            min-height: 250px; /* Adjust this value to increase or decrease card height */
+            max-width: 400px; /* Adjust this value to increase or decrease card width */
+            margin: 10px; /* Add some spacing between the cards */
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+        }
+
+
+
+        /* CSS for the marquee tag */
+
+
+
+
+
+        a {
+            color: black;
+            text-decoration: none;
+            align-content: center;
+        }
+
+
+
+            a:hover {
+                color: black;
+                text-decoration: none;
+                text-shadow: 1px 1px 1px black;
+            }
+
+
+
+        .selected-card {
+            transform: scale(1.05); /* Increase the scale to zoom in slightly */
+            transition: transform 0.2s; /* Add a smooth transition effect */
+            background-color: lightblue;
+            border: 2px solid blue;
+        }
+
+
+
+        .card:hover {
+            background-color: #d6e3e7;
+            border: 2px solid #9090ab;
+        }
+
+        .top-container {
+            position: relative;
+            padding-top: 1%;
+            width: 100%;
+            padding-bottom: 10%;
+        }
+
+
+
+        .container-content {
+            position: absolute;
+            top: 150px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+
+
+        /* Style for the buttons */
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+
+
+        .top-button {
+            margin: 0 10px;
+        }
+
+        .w-100 {
+            border-radius: 50%;
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="top-container">
+            <div class="container-content">
+                <img class="w-100 top-image" src="~/Images/Logo1.jpg" />
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-sm-3 mb-3">
+                <a href="/Admin/AddNewRoute">
+                    <div class="card">
+                        <div class="w-50">
+                            <img style="height:225px;width:225px" src="https://media.istockphoto.com/id/641567866/photo/long-exposure-of-car-lights-on-motorway-meandering-through-hills-at-sunset.jpg?s=612x612&w=0&k=20&c=AuL6oqh-Wr0e2WNcSdnuHLwRJag_bmKLx_h59MNmWCI=" alt="Card Image 2" class="w-100 h-100 mb-2">
+                        </div>
+                        <div class="card-body align-items-center d-flex justify-content-center text-center">
+                            <div class="w-100">
+                                <h5 class="card-title">Add New Route</h5>
+                                <p class="card-text">Click here to add a new bus route to the system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <!-- Card 2 -->
+            
+            <!-- Card 1 -->
+            <div class="col-sm-3 mb-3">
+                <a href="/Admin/UpdateRoute">
+                    <div class="card">
+                        <div class="w-50">
+                            <img style="height:225px;width:225px" src="https://media.istockphoto.com/id/641567866/photo/long-exposure-of-car-lights-on-motorway-meandering-through-hills-at-sunset.jpg?s=612x612&w=0&k=20&c=AuL6oqh-Wr0e2WNcSdnuHLwRJag_bmKLx_h59MNmWCI=" alt="Card Image 2" class="w-100 h-100 mb-2">
+                        </div>
+                        <div class="card-body align-items-center d-flex justify-content-center text-center">
+                            <div class="w-100">
+                                <h5 class="card-title">Update New Route</h5>
+                                <p class="card-text">Click here to update a new bus route to the system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            
+            <!-- Card 1 -->
+            <div class="col-sm-3 mb-3">
+                <a href="/Admin/DeleteRoute">
+                    <div class="card">
+                        <div class="w-50">
+                            <img style="height:225px;width:225px" src="https://media.istockphoto.com/id/641567866/photo/long-exposure-of-car-lights-on-motorway-meandering-through-hills-at-sunset.jpg?s=612x612&w=0&k=20&c=AuL6oqh-Wr0e2WNcSdnuHLwRJag_bmKLx_h59MNmWCI=" alt="Card Image 2" class="w-100 h-100 mb-2">
+                        </div>
+                        <div class="card-body align-items-center d-flex justify-content-center text-center">
+                            <div class="w-100">
+                                <h5 class="card-title">Delete Route</h5>
+                                <p class="card-text">Click here to delete a bus route to the system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Card 4 -->
+
+            <div class="col-sm-3 mb-3">
+                <a href="/Admin/ViewRouteData">
+                    <div class="card">
+                        
+                        <div class="w-50">
+                            <img style="height:225px;width:225px" src="https://media.istockphoto.com/id/641567866/photo/long-exposure-of-car-lights-on-motorway-meandering-through-hills-at-sunset.jpg?s=612x612&w=0&k=20&c=AuL6oqh-Wr0e2WNcSdnuHLwRJag_bmKLx_h59MNmWCI=" alt="Card Image 2" class="w-100 h-100 mb-2">
+                        </div>
+                        <div class="card-body align-items-center d-flex justify-content-center text-center">
+                            <div class="w-100">
+                                <h5 class="card-title">View Routes</h5>
+                                <p class="card-text">Click here to view all the bus routes in the system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Add the Bootstrap JS and jQuery scripts at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Add click event listeners to each card
+            $(".card").click(function () {
+                // Remove the selected class from all cards
+                $(".card").removeClass("selected-card");
+                // Add the selected class to the clicked card
+                $(this).addClass("selected-card");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@model Bus_Ticket_Reservation_.Models.BusinessLayer.schedule
+
+@{
+    ViewBag.Title = "UpdateSchedule1";
+}
+@using (Html.BeginForm("UpdateSchedule2", "Admin"))
+{
+    <body style="background-image: url('../../images/bg.jpg');">
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card col-lg-8 col-md-10 col-sm-12 p-4 border rounded">
+                <h3 class="mb-4">Update Schedule</h3>
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Schedule ID</td>
+                            <td>@Html.TextBoxFor(a => a.SID, new { @Value = Model.SID, @class = "form-control", @readonly = "readonly" })</td>
+                        </tr>
+                        <tr>
+                            <td>Route ID</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.RouteId, (IEnumerable<SelectListItem>)ViewBag.routes, "Select", new { @class = "form-control", required = "required" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bus ID</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.BusId, (IEnumerable<SelectListItem>)ViewBag.busids, "Select", new { @class = "form-control", required = "required" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Time</td>
+                            <td>@Html.TextBoxFor(a => a.Time, new { @Value = Model.Time, @class = "form-control", required = "required" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary w-100">Update Schedule</button>
+                            </td>
+                        </tr>
+                    </table>
+                }
+                @if (TempData["msg"] != null)
+                {
+                    <div class="container mt-4">
+                        <div class="alert alert-success">
+                            @TempData["msg"]
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/Admin/Home" class="btn btn-primary">Back</a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </body>
+}
+
+<!-- Add the Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

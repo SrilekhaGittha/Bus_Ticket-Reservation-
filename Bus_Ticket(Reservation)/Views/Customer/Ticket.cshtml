@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Ticket";
+}
+
+<title>Ticket Booked Successfully</title>
+
+<link href="~/Project_Styles/ticket.css" rel="stylesheet" />
+
+<body style="background-image: url('../../images/bg.jpg');">
+    @if (ViewBag.msg != null)
+    {
+        using (Html.BeginForm())
+        {
+            <header>
+                <h1>Ticket Booked Successfully</h1>
+            </header>
+            <div class="container">
+                <div class="success-message" id="ticketDetails">
+                    <!-- Add id here -->
+                    <h2>Your ticket has been booked successfully with TicketId : @ViewBag.msg!</h2>
+                    <p>Thank you for choosing <span>Tech Bus</span>. Below are the details of your booking:</p>
+
+                    <!-- Display ticket details here -->
+                    <p><strong>From:</strong>@TempData["from"]</p>
+                    <p><strong>To:</strong>@TempData["to"]</p>
+                    <p><strong>Date:</strong>@TempData["d"]</p>
+                    <p><strong>Passengers:</strong>@TempData["tickets"]</p>
+                    <!-- Add more ticket details if available -->
+
+                    <p>We have sent a confirmation email to your registered email address. Please check your inbox.</p>
+                    <p>Have a safe and pleasant journey!</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" style="margin-right:250px;">
+                <button id="printButton" class="btn btn-primary">Print Ticket</button>
+            </div>
+        }
+    }
+
+    <script>
+        // JavaScript code for printing the ticket
+        document.getElementById("printButton").addEventListener("click", function () {
+            var ticketDetails = document.getElementById("ticketDetails");
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Ticket Details</title></head><body>');
+            printWindow.document.write(ticketDetails.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        });
+    </script>
+</body>
