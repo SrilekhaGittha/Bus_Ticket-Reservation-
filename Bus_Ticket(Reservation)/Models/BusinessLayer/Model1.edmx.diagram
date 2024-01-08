@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cba16ac7c3a94a7e94e896e7f5bb6d2e" Name="Diagram1">
+      <Diagram DiagramId="7ba7fc47164a4f24bb1fbf6d213f758f" Name="Diagram1">
         <EntityTypeShape EntityType="BusDBModel.admin" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BusDBModel.bus" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BusDBModel.country" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="BusDBModel.seatAvailability" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BusDBModel.state" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BusDBModel.ticket" Width="1.5" PointX="5" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusDBModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="BusDBModel.FK_schedule_bus" ManuallyRouted="false" />
         <AssociationConnector Association="BusDBModel.FK_state_country" ManuallyRouted="false" />
         <AssociationConnector Association="BusDBModel.FK_ticket_Customer" ManuallyRouted="false" />

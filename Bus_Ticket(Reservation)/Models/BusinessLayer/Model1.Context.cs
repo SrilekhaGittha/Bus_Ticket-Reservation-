@@ -36,6 +36,5 @@ namespace Bus_Ticket_Reservation_.Models.BusinessLayer
         public virtual DbSet<seatAvailability> seatAvailabilities { get; set; }
         public virtual DbSet<state> states { get; set; }
         public virtual DbSet<ticket> tickets { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }
