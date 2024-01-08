@@ -12,7 +12,7 @@ namespace Bus_Ticket_Reservation_
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //Home
+            //Home   oo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
